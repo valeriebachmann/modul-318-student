@@ -18,6 +18,8 @@ namespace SwissTransportGUI
         {
             InitializeComponent();
             this.ActiveControl = txtStartStation;
+            lstViewStation.Columns[0].Width = 90;
+            lstViewStation.Columns[1].Width = 182;
         }
         public void SearchStations(string Stationname, ListBox listBoxName)
         {
@@ -81,11 +83,17 @@ namespace SwissTransportGUI
                 string stationName = selectedItem.SubItems[1].Text;
 
                 txtBoxStation.Text = stationName;
+                txtBoxStation.Tag = stationId;
 
                 lstViewStation.Items.Clear();
+
+                //lstViewDepartureBoard.Items.Clear();
+                //string stationName = txtBoxStation.Text;
+                //string stationId = txtBoxStation.Tag.ToString();
+
+                StationBoardRoot stationBoard = GetStationBoard(stationName, stationId);
+                DisplayDeparture(stationBoard);
             }
-
-
         }
 
         //------------------------------------AUSGABE (Methode)------------------------------------------------
@@ -140,8 +148,7 @@ namespace SwissTransportGUI
         }
         private void btnSearchDeparture_Click(object sender, EventArgs e)
         {
-            StationBoardRoot stationBoard = GetStationBoard("Luzern", "8505000");
-            DisplayDeparture(stationBoard);
+            
         }
 
         private void btnDeleteTimetable_Click(object sender, EventArgs e)

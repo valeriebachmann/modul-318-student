@@ -52,7 +52,6 @@
             this.lstViewStation = new System.Windows.Forms.ListView();
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btnDeleteDepartureBoard = new System.Windows.Forms.Button();
             this.lstViewDepartureBoard = new System.Windows.Forms.ListView();
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -103,7 +102,7 @@
             // btnDeleteTimetable
             // 
             this.btnDeleteTimetable.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteTimetable.Location = new System.Drawing.Point(715, 741);
+            this.btnDeleteTimetable.Location = new System.Drawing.Point(715, 733);
             this.btnDeleteTimetable.Name = "btnDeleteTimetable";
             this.btnDeleteTimetable.Size = new System.Drawing.Size(215, 42);
             this.btnDeleteTimetable.TabIndex = 15;
@@ -267,7 +266,6 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.lstViewStation);
-            this.groupBox2.Controls.Add(this.btnDeleteDepartureBoard);
             this.groupBox2.Controls.Add(this.lstViewDepartureBoard);
             this.groupBox2.Controls.Add(this.txtBoxStation);
             this.groupBox2.Controls.Add(this.btnSearchDepartureTimetable);
@@ -286,10 +284,11 @@
             this.columnHeader7,
             this.columnHeader10});
             this.lstViewStation.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstViewStation.FullRowSelect = true;
             this.lstViewStation.Location = new System.Drawing.Point(39, 126);
             this.lstViewStation.MultiSelect = false;
             this.lstViewStation.Name = "lstViewStation";
-            this.lstViewStation.Size = new System.Drawing.Size(389, 138);
+            this.lstViewStation.Size = new System.Drawing.Size(389, 124);
             this.lstViewStation.TabIndex = 7;
             this.lstViewStation.UseCompatibleStateImageBehavior = false;
             this.lstViewStation.View = System.Windows.Forms.View.Details;
@@ -303,17 +302,7 @@
             // columnHeader10
             // 
             this.columnHeader10.Text = "Name";
-            // 
-            // btnDeleteDepartureBoard
-            // 
-            this.btnDeleteDepartureBoard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteDepartureBoard.Location = new System.Drawing.Point(465, 741);
-            this.btnDeleteDepartureBoard.Name = "btnDeleteDepartureBoard";
-            this.btnDeleteDepartureBoard.Size = new System.Drawing.Size(215, 42);
-            this.btnDeleteDepartureBoard.TabIndex = 6;
-            this.btnDeleteDepartureBoard.Text = "Abfahrtstafel löschen";
-            this.btnDeleteDepartureBoard.UseVisualStyleBackColor = true;
-            this.btnDeleteDepartureBoard.Click += new System.EventHandler(this.btnDeleteDepartureBoard_Click);
+            this.columnHeader10.Width = 250;
             // 
             // lstViewDepartureBoard
             // 
@@ -357,7 +346,7 @@
             // btnSearchDepartureTimetable
             // 
             this.btnSearchDepartureTimetable.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearchDepartureTimetable.Location = new System.Drawing.Point(450, 236);
+            this.btnSearchDepartureTimetable.Location = new System.Drawing.Point(450, 216);
             this.btnSearchDepartureTimetable.Name = "btnSearchDepartureTimetable";
             this.btnSearchDepartureTimetable.Size = new System.Drawing.Size(230, 34);
             this.btnSearchDepartureTimetable.TabIndex = 2;
@@ -414,7 +403,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.Button btnDeleteTimetable;
-        private System.Windows.Forms.Button btnDeleteDepartureBoard;
         private System.Windows.Forms.ListView lstViewStation;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader10;
