@@ -17,9 +17,9 @@ namespace SwissTransportGUI
         public Form1()
         {
             InitializeComponent();
+            this.ActiveControl = txtStartStation;
         }
-
-        public void txtBoxStationSuchen(string Stationname, ListBox listBoxName)
+        public void SearchStations(string Stationname, ListBox listBoxName)
         {
             listBoxName.Items.Clear();
             
@@ -34,17 +34,17 @@ namespace SwissTransportGUI
         //-------------------Ortseingabe (Von & Nach) mit Beispiele ausgeben------------------------------
         private void txtStartStation_TextChanged(object sender, EventArgs e)
         {
-                txtBoxStationSuchen(txtStartStation.Text, lstStartStation);
+            SearchStations(txtStartStation.Text, lstStartStation);
         }
 
         private void txtEndStation_TextChanged(object sender, EventArgs e)
         {
-            txtBoxStationSuchen(txtEndStation.Text, lstEndStation);
+            SearchStations(txtEndStation.Text, lstEndStation);
         }
 
         private void txtBoxStation_TextChanged(object sender, EventArgs e)
         {
-            txtBoxStationSuchen(txtBoxStation.Text, lstBoxStation);
+            SearchStations(txtBoxStation.Text, lstBoxStation);
         }
 
         //------------------Auf Beispiele klicken, damit es in der Ortseingabe (Von & Nach) erscheint---------------
@@ -66,38 +66,77 @@ namespace SwissTransportGUI
             lstBoxStation.Items.Clear();
         }
 
-        //------------------------------------Fahrplanausgabe------------------------------------------------
-        private void FahrplanAusgeben(ListView lstView)
+        //------------------------------------AUSGABE (Methode)------------------------------------------------
+        
+        private Connections SearchConnections(string StartStation, string EndStation)
         {
-            Connections fahrplan = t.GetConnections(txtStartStation.Text, txtEndStation.Text);
-            foreach (Connection f in fahrplan.ConnectionList)
-            {
-                try
-                {
-                   
+            Connections connections = t.GetConnections(StartStation, EndStation);
+            return connections;
+        }
 
-                    lstView.Items.Add("f.dateTimePicker");
-                    lstView.Items.Add(f.From.Station.Name);
-                    lstView.Items.Add(f.To.Station.Name);
-                }
-                catch
-                {
-                    MessageBox.Show("Keine Verbindung zwischen den Stationen gefunden");
-                }
+        private StationBoardRoot GetStationBoard(string Station, string Id)
+        {
+            StationBoardRoot stationboard = t.GetStationBoard(Station, Id);
+            return stationboard;
+        }
+
+        //private Station GetStation()
+        //{
+        //    Station station = t.GetStations();
+        //    return null;
+        //}
+
+        //--------------------------------------Verbindung Ausgabe----------------------------------
+        private void DisplayConnections(Connections connections)
+        {
+            foreach (Connection c in connections.ConnectionList)
+            {
+                ListViewItem item = new ListViewItem();
+                DateTime departure = Convert.ToDateTime(c.From.Departure);
+                item.Text = departure.Date.ToString("dd.MM.yyyy");
+                item.SubItems.Add(departure.TimeOfDay.ToString());
+                item.SubItems.Add(c.From.Station.Name);
+                item.SubItems.Add(c.To.Station.Name);
+                item.SubItems.Add(c.From.Platform);
+
+                lstViewTimetable.Items.Add(item);
             }
         }
-        
-        private void buttonVerbindungSuchen_Click(object sender, EventArgs e)
+
+        private void btnSearchConnection_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtStartStation.Text) || string.IsNullOrWhiteSpace(txtEndStation.Text))
-                return;
-
-            FahrplanAusgeben(lstViewFahrplan);
-
-
-            ListViewItem i = new ListViewItem(txtStartStation.Text);
-            i.SubItems.Add(txtEndStation.Text);
-            lstViewFahrplan.Items.Add(i);
+            Connections connections = SearchConnections(txtStartStation.Text, txtEndStation.Text);
+            DisplayConnections(connections);
         }
+
+        //--------------------------------------------Abfahrtstafel Ausgabe--------------------------------------
+        private void DisplayDeparture(StationBoardRoot stationBoard)
+        {
+            foreach (StationBoard c in stationBoard.Entries)
+            {
+                ListViewItem item = new ListViewItem();
+            //    DateTime departure = Convert.ToDateTime(c.From.Departure);
+            //    item.SubItems.Add(departure.TimeOfDay.ToString());
+           //     item.SubItems.Add(c.To.Station.Name);
+            //    item.SubItems.Add(c.From.Platform);
+
+                lstViewDepartureBoard.Items.Add(item);
+            }
+        }
+        private void btnSearchDeparture_Click(object sender, EventArgs e)
+        {
+           // StationBoardRoot stationBoard = GetStationBoard(txtBoxStation.Text, stationBoard.Station.Id);
+           // DisplayDeparture(stationBoard);
+        }
+
+        private void btnDeleteTimetable_Click(object sender, EventArgs e)
+        {
+            lstViewTimetable.Items.Clear();
+        }
+        private void btnDeleteDepartureBoard_Click(object sender, EventArgs e)
+        {
+            lstViewDepartureBoard.Items.Clear();
+        }
+        
     }
 }

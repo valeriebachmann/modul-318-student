@@ -25,7 +25,7 @@ namespace SwissTransport
     {
         [JsonProperty("station")]
         public Station Station { get; set; }
-
+       
         public string Arrival { get; set; }
 
         public string ArrivalTimestamp { get; set; }

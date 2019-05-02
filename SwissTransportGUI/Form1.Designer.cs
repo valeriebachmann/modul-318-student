@@ -28,9 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.buttonVerbindungSuchen = new System.Windows.Forms.Button();
+            this.btnSearchConnection = new System.Windows.Forms.Button();
             this.lstStart = new System.Windows.Forms.GroupBox();
-            this.lstViewFahrplan = new System.Windows.Forms.ListView();
+            this.lstViewTimetable = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lstEndStation = new System.Windows.Forms.ListBox();
             this.lstStartStation = new System.Windows.Forms.ListBox();
             this.txtEndStation = new System.Windows.Forms.TextBox();
@@ -43,36 +48,37 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lstAbfahrtstafel = new System.Windows.Forms.ListBox();
+            this.lstViewDepartureBoard = new System.Windows.Forms.ListView();
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lstBoxStation = new System.Windows.Forms.ListBox();
             this.txtBoxStation = new System.Windows.Forms.TextBox();
-            this.buttonStationSuchen = new System.Windows.Forms.Button();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnSearchDeparture = new System.Windows.Forms.Button();
+            this.btnDeleteTimetable = new System.Windows.Forms.Button();
+            this.btnDeleteDepartureBoard = new System.Windows.Forms.Button();
             this.lstStart.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // buttonVerbindungSuchen
+            // btnSearchConnection
             // 
-            this.buttonVerbindungSuchen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonVerbindungSuchen.Location = new System.Drawing.Point(715, 308);
-            this.buttonVerbindungSuchen.Name = "buttonVerbindungSuchen";
-            this.buttonVerbindungSuchen.Size = new System.Drawing.Size(215, 39);
-            this.buttonVerbindungSuchen.TabIndex = 0;
-            this.buttonVerbindungSuchen.Text = "Verbindung suchen";
-            this.buttonVerbindungSuchen.UseVisualStyleBackColor = true;
-            this.buttonVerbindungSuchen.Click += new System.EventHandler(this.buttonVerbindungSuchen_Click);
+            this.btnSearchConnection.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearchConnection.Location = new System.Drawing.Point(715, 308);
+            this.btnSearchConnection.Name = "btnSearchConnection";
+            this.btnSearchConnection.Size = new System.Drawing.Size(215, 39);
+            this.btnSearchConnection.TabIndex = 0;
+            this.btnSearchConnection.Text = "Verbindung suchen";
+            this.btnSearchConnection.UseVisualStyleBackColor = true;
+            this.btnSearchConnection.Click += new System.EventHandler(this.btnSearchConnection_Click);
             // 
             // lstStart
             // 
             this.lstStart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lstStart.Controls.Add(this.lstViewFahrplan);
+            this.lstStart.Controls.Add(this.btnDeleteTimetable);
+            this.lstStart.Controls.Add(this.lstViewTimetable);
             this.lstStart.Controls.Add(this.lstEndStation);
             this.lstStart.Controls.Add(this.lstStartStation);
             this.lstStart.Controls.Add(this.txtEndStation);
@@ -83,30 +89,57 @@
             this.lstStart.Controls.Add(this.dateTimePicker);
             this.lstStart.Controls.Add(this.label2);
             this.lstStart.Controls.Add(this.label1);
-            this.lstStart.Controls.Add(this.buttonVerbindungSuchen);
+            this.lstStart.Controls.Add(this.btnSearchConnection);
             this.lstStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstStart.Location = new System.Drawing.Point(35, 12);
             this.lstStart.Name = "lstStart";
-            this.lstStart.Size = new System.Drawing.Size(964, 749);
+            this.lstStart.Size = new System.Drawing.Size(957, 789);
             this.lstStart.TabIndex = 1;
             this.lstStart.TabStop = false;
             this.lstStart.Text = "Der Online-Fahrplan";
             // 
-            // lstViewFahrplan
+            // lstViewTimetable
             // 
-            this.lstViewFahrplan.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lstViewTimetable.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4,
             this.columnHeader5});
-            this.lstViewFahrplan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lstViewFahrplan.Location = new System.Drawing.Point(25, 382);
-            this.lstViewFahrplan.Name = "lstViewFahrplan";
-            this.lstViewFahrplan.Size = new System.Drawing.Size(905, 345);
-            this.lstViewFahrplan.TabIndex = 13;
-            this.lstViewFahrplan.UseCompatibleStateImageBehavior = false;
-            this.lstViewFahrplan.View = System.Windows.Forms.View.Details;
+            this.lstViewTimetable.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstViewTimetable.FullRowSelect = true;
+            this.lstViewTimetable.GridLines = true;
+            this.lstViewTimetable.Location = new System.Drawing.Point(25, 382);
+            this.lstViewTimetable.Name = "lstViewTimetable";
+            this.lstViewTimetable.Size = new System.Drawing.Size(905, 345);
+            this.lstViewTimetable.TabIndex = 13;
+            this.lstViewTimetable.UseCompatibleStateImageBehavior = false;
+            this.lstViewTimetable.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Datum";
+            this.columnHeader1.Width = 174;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Abfahrtszeit";
+            this.columnHeader2.Width = 126;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Von";
+            this.columnHeader3.Width = 239;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Nach";
+            this.columnHeader4.Width = 221;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Gleis";
+            this.columnHeader5.Width = 145;
             // 
             // lstEndStation
             // 
@@ -217,29 +250,52 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.lstAbfahrtstafel);
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.btnDeleteDepartureBoard);
+            this.groupBox2.Controls.Add(this.lstViewDepartureBoard);
             this.groupBox2.Controls.Add(this.lstBoxStation);
             this.groupBox2.Controls.Add(this.txtBoxStation);
-            this.groupBox2.Controls.Add(this.buttonStationSuchen);
+            this.groupBox2.Controls.Add(this.btnSearchDeparture);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(1036, 12);
+            this.groupBox2.Location = new System.Drawing.Point(1025, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(603, 749);
+            this.groupBox2.Size = new System.Drawing.Size(610, 789);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Abfahrtstafel";
             // 
-            // lstAbfahrtstafel
+            // lstViewDepartureBoard
             // 
-            this.lstAbfahrtstafel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lstAbfahrtstafel.FormattingEnabled = true;
-            this.lstAbfahrtstafel.ItemHeight = 25;
-            this.lstAbfahrtstafel.Location = new System.Drawing.Point(41, 273);
-            this.lstAbfahrtstafel.Name = "lstAbfahrtstafel";
-            this.lstAbfahrtstafel.Size = new System.Drawing.Size(543, 454);
-            this.lstAbfahrtstafel.TabIndex = 5;
+            this.lstViewDepartureBoard.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader6,
+            this.columnHeader8,
+            this.columnHeader9});
+            this.lstViewDepartureBoard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstViewDepartureBoard.GridLines = true;
+            this.lstViewDepartureBoard.Location = new System.Drawing.Point(39, 276);
+            this.lstViewDepartureBoard.Name = "lstViewDepartureBoard";
+            this.lstViewDepartureBoard.Size = new System.Drawing.Size(546, 451);
+            this.lstViewDepartureBoard.TabIndex = 5;
+            this.lstViewDepartureBoard.UseCompatibleStateImageBehavior = false;
+            this.lstViewDepartureBoard.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Abfahrtszeit";
+            this.columnHeader6.Width = 156;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Nach";
+            this.columnHeader8.Width = 254;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "Gleis";
+            this.columnHeader9.Width = 288;
             // 
             // lstBoxStation
             // 
@@ -261,46 +317,44 @@
             this.txtBoxStation.TabIndex = 3;
             this.txtBoxStation.TextChanged += new System.EventHandler(this.txtBoxStation_TextChanged);
             // 
-            // buttonStationSuchen
+            // btnSearchDeparture
             // 
-            this.buttonStationSuchen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonStationSuchen.Location = new System.Drawing.Point(362, 99);
-            this.buttonStationSuchen.Name = "buttonStationSuchen";
-            this.buttonStationSuchen.Size = new System.Drawing.Size(223, 34);
-            this.buttonStationSuchen.TabIndex = 2;
-            this.buttonStationSuchen.Text = "Station suchen";
-            this.buttonStationSuchen.UseVisualStyleBackColor = true;
+            this.btnSearchDeparture.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearchDeparture.Location = new System.Drawing.Point(362, 216);
+            this.btnSearchDeparture.Name = "btnSearchDeparture";
+            this.btnSearchDeparture.Size = new System.Drawing.Size(223, 34);
+            this.btnSearchDeparture.TabIndex = 2;
+            this.btnSearchDeparture.Text = "Station suchen";
+            this.btnSearchDeparture.UseVisualStyleBackColor = true;
+            this.btnSearchDeparture.Click += new System.EventHandler(this.btnSearchDeparture_Click);
             // 
-            // columnHeader1
+            // btnDeleteTimetable
             // 
-            this.columnHeader1.Text = "Datum";
-            this.columnHeader1.Width = 174;
+            this.btnDeleteTimetable.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteTimetable.Location = new System.Drawing.Point(715, 741);
+            this.btnDeleteTimetable.Name = "btnDeleteTimetable";
+            this.btnDeleteTimetable.Size = new System.Drawing.Size(215, 42);
+            this.btnDeleteTimetable.TabIndex = 15;
+            this.btnDeleteTimetable.Text = "Fahrplan löschen";
+            this.btnDeleteTimetable.UseVisualStyleBackColor = true;
+            this.btnDeleteTimetable.Click += new System.EventHandler(this.btnDeleteTimetable_Click);
             // 
-            // columnHeader2
+            // btnDeleteDepartureBoard
             // 
-            this.columnHeader2.Text = "Abfahrtszeit";
-            this.columnHeader2.Width = 126;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Von";
-            this.columnHeader3.Width = 239;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Nach";
-            this.columnHeader4.Width = 221;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "Gleis";
-            this.columnHeader5.Width = 110;
+            this.btnDeleteDepartureBoard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteDepartureBoard.Location = new System.Drawing.Point(370, 741);
+            this.btnDeleteDepartureBoard.Name = "btnDeleteDepartureBoard";
+            this.btnDeleteDepartureBoard.Size = new System.Drawing.Size(215, 42);
+            this.btnDeleteDepartureBoard.TabIndex = 6;
+            this.btnDeleteDepartureBoard.Text = "Abfahrtstafel löschen";
+            this.btnDeleteDepartureBoard.UseVisualStyleBackColor = true;
+            this.btnDeleteDepartureBoard.Click += new System.EventHandler(this.btnDeleteDepartureBoard_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1664, 773);
+            this.ClientSize = new System.Drawing.Size(1671, 813);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.lstStart);
             this.Name = "Form1";
@@ -316,7 +370,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button buttonVerbindungSuchen;
+        private System.Windows.Forms.Button btnSearchConnection;
         private System.Windows.Forms.GroupBox lstStart;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
@@ -326,20 +380,25 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button buttonStationSuchen;
+        private System.Windows.Forms.Button btnSearchDeparture;
         private System.Windows.Forms.ListBox lstEndStation;
         private System.Windows.Forms.ListBox lstStartStation;
         private System.Windows.Forms.TextBox txtEndStation;
         private System.Windows.Forms.TextBox txtStartStation;
         private System.Windows.Forms.ListBox lstBoxStation;
         private System.Windows.Forms.TextBox txtBoxStation;
-        private System.Windows.Forms.ListBox lstAbfahrtstafel;
-        private System.Windows.Forms.ListView lstViewFahrplan;
+        private System.Windows.Forms.ListView lstViewTimetable;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ListView lstViewDepartureBoard;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.Button btnDeleteTimetable;
+        private System.Windows.Forms.Button btnDeleteDepartureBoard;
     }
 }
 
