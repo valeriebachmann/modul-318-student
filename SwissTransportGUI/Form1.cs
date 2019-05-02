@@ -65,13 +65,13 @@ namespace SwissTransportGUI
         private void lstStartStation_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtStartStation.Text = lstStartStation.SelectedItem.ToString();
-            lstStartStation.Items.Clear();
+            //lstStartStation.Items.Clear();
         }
 
         private void lstEndStation_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtEndStation.Text = lstEndStation.SelectedItem.ToString();
-            lstEndStation.Items.Clear();
+            //lstEndStation.Items.Clear();
         }
 
         private void lstStation_SelectedIndexChanged(object sender, EventArgs e)
@@ -90,6 +90,11 @@ namespace SwissTransportGUI
                 StationBoardRoot stationBoard = GetStationBoard(stationName, stationId);
                 DisplayDeparture(stationBoard);
             }
+        }
+
+        private void lstStartStation_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.ActiveControl = txtEndStation;
         }
 
         //------------------------------------AUSGABE (Methode)------------------------------------------------
@@ -147,10 +152,5 @@ namespace SwissTransportGUI
         {
             lstViewTimetable.Items.Clear();
         }
-        private void btnDeleteDepartureBoard_Click(object sender, EventArgs e)
-        {
-            lstViewDepartureBoard.Items.Clear();
-        }
-
     }
 }

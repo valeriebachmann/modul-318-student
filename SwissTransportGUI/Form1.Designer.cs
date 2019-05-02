@@ -172,6 +172,7 @@
             this.lstStartStation.Name = "lstStartStation";
             this.lstStartStation.Size = new System.Drawing.Size(292, 124);
             this.lstStartStation.TabIndex = 11;
+            this.lstStartStation.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lstStartStation_MouseClick);
             this.lstStartStation.SelectedIndexChanged += new System.EventHandler(this.lstStartStation_SelectedIndexChanged);
             // 
             // txtEndStation
