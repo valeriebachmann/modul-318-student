@@ -85,14 +85,10 @@ namespace SwissTransportGUI
                 txtBoxStation.Text = stationName;
                 txtBoxStation.Tag = stationId;
 
-                lstViewStation.Items.Clear();
+                lstViewDepartureBoard.Items.Clear();
 
-                //lstViewDepartureBoard.Items.Clear();
-                //string stationName = txtBoxStation.Text;
-                //string stationId = txtBoxStation.Tag.ToString();
-
-                //StationBoardRoot stationBoard = GetStationBoard(stationName, stationId);
-                //DisplayDeparture(stationBoard);
+                StationBoardRoot stationBoard = GetStationBoard(stationName, stationId);
+                DisplayDeparture(stationBoard);
             }
         }
 
@@ -145,15 +141,6 @@ namespace SwissTransportGUI
 
                 lstViewDepartureBoard.Items.Add(item);
             }
-        }
-        private void btnSearchDeparture_Click(object sender, EventArgs e)
-        {
-            lstViewDepartureBoard.Items.Clear();
-            string stationName = txtBoxStation.Text;
-            string stationId = txtBoxStation.Tag.ToString();
-
-            StationBoardRoot stationBoard = GetStationBoard(stationName, stationId);
-            DisplayDeparture(stationBoard);
         }
 
         private void btnDeleteTimetable_Click(object sender, EventArgs e)

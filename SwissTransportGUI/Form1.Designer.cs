@@ -57,7 +57,6 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.txtBoxStation = new System.Windows.Forms.TextBox();
-            this.btnSearchDepartureTimetable = new System.Windows.Forms.Button();
             this.lstStart.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -268,7 +267,6 @@
             this.groupBox2.Controls.Add(this.lstViewStation);
             this.groupBox2.Controls.Add(this.lstViewDepartureBoard);
             this.groupBox2.Controls.Add(this.txtBoxStation);
-            this.groupBox2.Controls.Add(this.btnSearchDepartureTimetable);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(1025, 12);
@@ -343,17 +341,6 @@
             this.txtBoxStation.TabIndex = 3;
             this.txtBoxStation.TextChanged += new System.EventHandler(this.txtBoxStation_TextChanged);
             // 
-            // btnSearchDepartureTimetable
-            // 
-            this.btnSearchDepartureTimetable.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearchDepartureTimetable.Location = new System.Drawing.Point(450, 216);
-            this.btnSearchDepartureTimetable.Name = "btnSearchDepartureTimetable";
-            this.btnSearchDepartureTimetable.Size = new System.Drawing.Size(230, 34);
-            this.btnSearchDepartureTimetable.TabIndex = 2;
-            this.btnSearchDepartureTimetable.Text = "Abfahrtstafel ausgeben";
-            this.btnSearchDepartureTimetable.UseVisualStyleBackColor = true;
-            this.btnSearchDepartureTimetable.Click += new System.EventHandler(this.btnSearchDeparture_Click);
-            // 
             // Form1
             // 
             this.AcceptButton = this.btnSearchConnection;
@@ -386,7 +373,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button btnSearchDepartureTimetable;
         private System.Windows.Forms.ListBox lstEndStation;
         private System.Windows.Forms.ListBox lstStartStation;
         private System.Windows.Forms.TextBox txtEndStation;
