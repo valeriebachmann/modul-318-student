@@ -31,6 +31,19 @@ namespace SwissTransportGUI
             }
         }
 
+        public void SearchDeparture(string Stationname, ListView listViewName)
+        {
+            listViewName.Items.Clear();
+
+            Stations myStations = t.GetStations(Stationname);
+
+            foreach (Station station in myStations.StationList)
+            {
+                ListViewItem item = listViewName.Items.Add(station.Id);
+                item.SubItems.Add(station.Name);
+            }
+        }
+
         //-------------------Ortseingabe (Von & Nach) mit Beispiele ausgeben------------------------------
         private void txtStartStation_TextChanged(object sender, EventArgs e)
         {
@@ -41,10 +54,9 @@ namespace SwissTransportGUI
         {
             SearchStations(txtEndStation.Text, lstEndStation);
         }
-
         private void txtBoxStation_TextChanged(object sender, EventArgs e)
         {
-            SearchStations(txtBoxStation.Text, lstBoxStation);
+            SearchDeparture(txtBoxStation.Text, lstViewStation);
         }
 
         //------------------Auf Beispiele klicken, damit es in der Ortseingabe (Von & Nach) erscheint---------------
@@ -60,14 +72,24 @@ namespace SwissTransportGUI
             lstEndStation.Items.Clear();
         }
 
-        private void lstBoxStation_SelectedIndexChanged(object sender, EventArgs e)
+        private void lstStation_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtBoxStation.Text = lstBoxStation.SelectedItem.ToString();
-            lstBoxStation.Items.Clear();
+            if (lstViewStation.SelectedItems != null && lstViewStation.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedItem = lstViewStation.SelectedItems[0];
+                string stationId = selectedItem.Text;
+                string stationName = selectedItem.SubItems[1].Text;
+
+                txtBoxStation.Text = stationName;
+
+                lstViewStation.Items.Clear();
+            }
+
+
         }
 
         //------------------------------------AUSGABE (Methode)------------------------------------------------
-        
+
         private Connections SearchConnections(string StartStation, string EndStation)
         {
             Connections connections = t.GetConnections(StartStation, EndStation);
@@ -79,12 +101,6 @@ namespace SwissTransportGUI
             StationBoardRoot stationboard = t.GetStationBoard(Station, Id);
             return stationboard;
         }
-
-        //private Station GetStation()
-        //{
-        //    Station station = t.GetStations();
-        //    return null;
-        //}
 
         //--------------------------------------Verbindung Ausgabe----------------------------------
         private void DisplayConnections(Connections connections)
@@ -112,21 +128,20 @@ namespace SwissTransportGUI
         //--------------------------------------------Abfahrtstafel Ausgabe--------------------------------------
         private void DisplayDeparture(StationBoardRoot stationBoard)
         {
-            foreach (StationBoard c in stationBoard.Entries)
+            foreach (StationBoard boardEntry in stationBoard.Entries)
             {
                 ListViewItem item = new ListViewItem();
-            //    DateTime departure = Convert.ToDateTime(c.From.Departure);
-            //    item.SubItems.Add(departure.TimeOfDay.ToString());
-           //     item.SubItems.Add(c.To.Station.Name);
-            //    item.SubItems.Add(c.From.Platform);
+                item.Text = boardEntry.Stop.Departure.ToString();
+                item.SubItems.Add(boardEntry.To);
+                item.SubItems.Add(boardEntry.Operator);
 
                 lstViewDepartureBoard.Items.Add(item);
             }
         }
         private void btnSearchDeparture_Click(object sender, EventArgs e)
         {
-           // StationBoardRoot stationBoard = GetStationBoard(txtBoxStation.Text, stationBoard.Station.Id);
-           // DisplayDeparture(stationBoard);
+            StationBoardRoot stationBoard = GetStationBoard("Luzern", "8505000");
+            DisplayDeparture(stationBoard);
         }
 
         private void btnDeleteTimetable_Click(object sender, EventArgs e)
@@ -137,6 +152,6 @@ namespace SwissTransportGUI
         {
             lstViewDepartureBoard.Items.Clear();
         }
-        
+
     }
 }
