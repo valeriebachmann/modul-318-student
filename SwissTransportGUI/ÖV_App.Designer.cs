@@ -1,6 +1,6 @@
 ﻿namespace SwissTransportGUI
 {
-    partial class Form1
+    partial class ÖV_App
     {
         /// <summary>
         /// Erforderliche Designervariable.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ÖV_App));
             this.btnSearchConnection = new System.Windows.Forms.Button();
             this.lstStart = new System.Windows.Forms.GroupBox();
             this.btnDeleteTimetable = new System.Windows.Forms.Button();
@@ -41,10 +42,8 @@
             this.lstStartStation = new System.Windows.Forms.ListBox();
             this.txtEndStation = new System.Windows.Forms.TextBox();
             this.txtStartStation = new System.Windows.Forms.TextBox();
-            this.textBoxZeit = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.dateTimeDeparture = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -83,10 +82,8 @@
             this.lstStart.Controls.Add(this.lstStartStation);
             this.lstStart.Controls.Add(this.txtEndStation);
             this.lstStart.Controls.Add(this.txtStartStation);
-            this.lstStart.Controls.Add(this.textBoxZeit);
             this.lstStart.Controls.Add(this.label4);
-            this.lstStart.Controls.Add(this.label3);
-            this.lstStart.Controls.Add(this.dateTimePicker);
+            this.lstStart.Controls.Add(this.dateTimeDeparture);
             this.lstStart.Controls.Add(this.label2);
             this.lstStart.Controls.Add(this.label1);
             this.lstStart.Controls.Add(this.btnSearchConnection);
@@ -101,11 +98,11 @@
             // btnDeleteTimetable
             // 
             this.btnDeleteTimetable.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteTimetable.Location = new System.Drawing.Point(715, 733);
+            this.btnDeleteTimetable.Location = new System.Drawing.Point(674, 733);
             this.btnDeleteTimetable.Name = "btnDeleteTimetable";
-            this.btnDeleteTimetable.Size = new System.Drawing.Size(215, 42);
+            this.btnDeleteTimetable.Size = new System.Drawing.Size(256, 42);
             this.btnDeleteTimetable.TabIndex = 15;
-            this.btnDeleteTimetable.Text = "Fahrplan löschen";
+            this.btnDeleteTimetable.Text = "Fahrplan zurücksetzen";
             this.btnDeleteTimetable.UseVisualStyleBackColor = true;
             this.btnDeleteTimetable.Click += new System.EventHandler(this.btnDeleteTimetable_Click);
             // 
@@ -174,6 +171,7 @@
             this.lstStartStation.TabIndex = 11;
             this.lstStartStation.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lstStartStation_MouseClick);
             this.lstStartStation.SelectedIndexChanged += new System.EventHandler(this.lstStartStation_SelectedIndexChanged);
+            this.lstStartStation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lstStartStation_KeyDown);
             // 
             // txtEndStation
             // 
@@ -192,43 +190,28 @@
             this.txtStartStation.Size = new System.Drawing.Size(292, 27);
             this.txtStartStation.TabIndex = 9;
             this.txtStartStation.TextChanged += new System.EventHandler(this.txtStartStation_TextChanged);
-            // 
-            // textBoxZeit
-            // 
-            this.textBoxZeit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxZeit.Location = new System.Drawing.Point(379, 316);
-            this.textBoxZeit.Name = "textBoxZeit";
-            this.textBoxZeit.Size = new System.Drawing.Size(120, 27);
-            this.textBoxZeit.TabIndex = 8;
-            this.textBoxZeit.Text = "z.B. 13:30";
+            //this.txtStartStation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MoveStartStation);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(374, 276);
+            this.label4.Location = new System.Drawing.Point(20, 276);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(44, 25);
+            this.label4.Size = new System.Drawing.Size(137, 25);
             this.label4.TabIndex = 7;
-            this.label4.Text = "Zeit";
+            this.label4.Text = "Abfahrtszeiten";
             // 
-            // label3
+            // dateTimeDeparture
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(20, 276);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(69, 25);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Datum";
-            // 
-            // dateTimePicker
-            // 
-            this.dateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker.Location = new System.Drawing.Point(25, 314);
-            this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(292, 27);
-            this.dateTimePicker.TabIndex = 5;
+            this.dateTimeDeparture.CustomFormat = "HH:mm";
+            this.dateTimeDeparture.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimeDeparture.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimeDeparture.Location = new System.Drawing.Point(25, 304);
+            this.dateTimeDeparture.Name = "dateTimeDeparture";
+            this.dateTimeDeparture.Size = new System.Drawing.Size(292, 27);
+            this.dateTimeDeparture.TabIndex = 5;
+            this.dateTimeDeparture.Value = new System.DateTime(2019, 5, 2, 0, 0, 0, 0);
             // 
             // label2
             // 
@@ -330,7 +313,7 @@
             // 
             // columnHeader9
             // 
-            this.columnHeader9.Text = "Anbieter";
+            this.columnHeader9.Text = "Transportunternehmen";
             this.columnHeader9.Width = 288;
             // 
             // txtBoxStation
@@ -342,7 +325,7 @@
             this.txtBoxStation.TabIndex = 3;
             this.txtBoxStation.TextChanged += new System.EventHandler(this.txtBoxStation_TextChanged);
             // 
-            // Form1
+            // ÖV_App
             // 
             this.AcceptButton = this.btnSearchConnection;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -351,9 +334,10 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.lstStart);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Name = "Form1";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "ÖV_App";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "The Amazing ÖV App";
             this.lstStart.ResumeLayout(false);
             this.lstStart.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -368,10 +352,8 @@
         private System.Windows.Forms.GroupBox lstStart;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBoxZeit;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DateTimePicker dateTimePicker;
+        private System.Windows.Forms.DateTimePicker dateTimeDeparture;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ListBox lstEndStation;

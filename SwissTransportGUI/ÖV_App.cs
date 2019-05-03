@@ -11,10 +11,10 @@ using System.Windows.Forms;
 
 namespace SwissTransportGUI
 {
-    public partial class Form1 : Form
+    public partial class ÖV_App : Form
     {
         Transport t = new Transport();
-        public Form1()
+        public ÖV_App()
         {
             InitializeComponent();
             this.ActiveControl = txtStartStation;
@@ -81,6 +81,7 @@ namespace SwissTransportGUI
                 ListViewItem selectedItem = lstViewStation.SelectedItems[0];
                 string stationId = selectedItem.Text;
                 string stationName = selectedItem.SubItems[1].Text;
+                string time = dateTimeDeparture.Value.ToString("HH:mm");
 
                 txtBoxStation.Text = stationName;
                 txtBoxStation.Tag = stationId;
@@ -99,9 +100,9 @@ namespace SwissTransportGUI
 
         //------------------------------------AUSGABE (Methode)------------------------------------------------
 
-        private Connections SearchConnections(string StartStation, string EndStation)
+        private Connections SearchConnections(string StartStation, string EndStation, string Time)
         {
-            Connections connections = t.GetConnections(StartStation, EndStation);
+            Connections connections = t.GetConnections(StartStation, EndStation, Time);
             return connections;
         }
 
@@ -119,6 +120,8 @@ namespace SwissTransportGUI
                 ListViewItem item = new ListViewItem();
                 DateTime departure = Convert.ToDateTime(c.From.Departure);
                 item.Text = departure.Date.ToString("dd.MM.yyyy");
+                //DateTime dateTime = Convert.ToDateTime(c.From.Departure);
+                //item.SubItems.Add(c.From.Departure);
                 item.SubItems.Add(departure.TimeOfDay.ToString());
                 item.SubItems.Add(c.From.Station.Name);
                 item.SubItems.Add(c.To.Station.Name);
@@ -130,8 +133,29 @@ namespace SwissTransportGUI
 
         private void btnSearchConnection_Click(object sender, EventArgs e)
         {
-            Connections connections = SearchConnections(txtStartStation.Text, txtEndStation.Text);
+            if(lstViewTimetable.Items.Count > 0)
+            {
+                lstViewTimetable.Items.Clear();
+            }
+            if (string.IsNullOrEmpty(txtStartStation.Text) && string.IsNullOrEmpty(txtEndStation.Text))
+            {
+                MessageBox.Show("Bitte geben Sie die Anfahrts- und Ankunftsstation ein!");
+            }
+            if (string.IsNullOrEmpty(txtStartStation.Text) && !string.IsNullOrEmpty(txtEndStation.Text))
+            {
+                MessageBox.Show("Bitte geben Sie eine Anfahrtsstation ein!");
+            }
+            if (!string.IsNullOrEmpty(txtStartStation.Text) && string.IsNullOrEmpty(txtEndStation.Text))
+            {
+                MessageBox.Show("Bitte geben Sie eine Ankunftsstation ein!");
+            }
+
+            string time = dateTimeDeparture.Value.ToString("HH:mm");
+            Connections connections = SearchConnections(txtStartStation.Text, txtEndStation.Text, time);
             DisplayConnections(connections);
+
+            
+
         }
 
         //--------------------------------------------Abfahrtstafel Ausgabe--------------------------------------
@@ -151,6 +175,11 @@ namespace SwissTransportGUI
         private void btnDeleteTimetable_Click(object sender, EventArgs e)
         {
             lstViewTimetable.Items.Clear();
+        }
+
+        private void lstStartStation_KeyDown(object sender, KeyEventArgs e)
+        {
+            txtStartStation.Text = lstStartStation.SelectedIndex.ToString(); // .SelectedItem.ToString();
         }
     }
 }
