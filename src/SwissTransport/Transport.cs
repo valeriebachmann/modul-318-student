@@ -33,14 +33,18 @@ namespace SwissTransport
             var responseStream = response.GetResponseStream();
 
             if (responseStream != null)
-            {
-                var readToEnd = new StreamReader(responseStream).ReadToEnd();
-                var stationboard =
-                    JsonConvert.DeserializeObject<StationBoardRoot>(readToEnd);
-                return stationboard;
-            }
-
-            return null;
+                try
+                {
+                    var readToEnd = new StreamReader(responseStream).ReadToEnd();
+                    var stationboard =
+                        JsonConvert.DeserializeObject<StationBoardRoot>(readToEnd);
+                    return stationboard;
+                }
+                catch(JsonSerializationException ex)
+                {
+                    string message = ex.Message;
+                }
+                return null;
         }
 
         public Connections GetConnections(string fromStation, string toStation, string time)
@@ -53,10 +57,17 @@ namespace SwissTransport
 
             if (responseStream != null)
             {
-                var readToEnd = new StreamReader(responseStream).ReadToEnd();
-                var connections =
-                    JsonConvert.DeserializeObject<Connections>(readToEnd);
-                return connections;
+                try
+                {
+                    var readToEnd = new StreamReader(responseStream).ReadToEnd();
+                    var connections =
+                        JsonConvert.DeserializeObject<Connections>(readToEnd);
+                    return connections;
+                }
+                catch (JsonSerializationException ex)
+                {
+                    string message = ex.Message;
+                }
             }
 
             return null;
